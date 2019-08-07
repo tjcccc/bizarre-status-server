@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bizarre-status-server", "bizarre-status-server.csproj", "{877CC75C-35CD-41F1-B8EC-268B4B062384}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BizarreStatusServer", "BizarreStatusServer.csproj", "{877CC75C-35CD-41F1-B8EC-268B4B062384}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

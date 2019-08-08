@@ -29,7 +29,7 @@ namespace BizarreStatusServer.Controllers
 
         // GET: api/Roles/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Role>> GetRole(Guid id)
+        public async Task<ActionResult<Role>> GetRole(int id)
         {
             var role = await _context.Roles.FindAsync(id);
 
@@ -43,7 +43,7 @@ namespace BizarreStatusServer.Controllers
 
         // PUT: api/Roles/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRole(Guid id, Role role)
+        public async Task<IActionResult> PutRole(int id, Role role)
         {
             if (id != role.Id)
             {
@@ -97,7 +97,7 @@ namespace BizarreStatusServer.Controllers
             return role;
         }
 
-        private bool RoleExists(Guid id)
+        private bool RoleExists(int id)
         {
             return _context.Roles.Any(e => e.Id == id);
         }

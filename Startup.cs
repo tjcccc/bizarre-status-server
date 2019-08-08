@@ -27,8 +27,11 @@ namespace BizarreStatusServer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<RoleContext>(option => option.UseInMemoryDatabase("Role"));
+            //services.AddDbContext<RoleContext>(option => option.UseInMemoryDatabase("Role"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            var db = Configuration.GetConnectionString("Database");
+            services.AddDbContext<RoleContext>(option => option.UseMySql(Configuration.GetConnectionString("Database")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

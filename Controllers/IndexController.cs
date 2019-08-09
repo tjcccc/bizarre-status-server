@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BizarreStatusServer.Controllers
@@ -10,6 +6,8 @@ namespace BizarreStatusServer.Controllers
     {
         [Route("/")]
         [Route("index")]
+        [Route("api")]
+        [Route("api/index")]
         public IActionResult Index()
         {
             ViewData["ApiTitle"] = "Bizarre Status API Server";

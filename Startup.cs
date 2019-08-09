@@ -31,6 +31,7 @@ namespace BizarreStatusServer
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             var db = Configuration.GetConnectionString("Database");
+            services.AddDbContext<UserContext>(option => option.UseMySql(Configuration.GetConnectionString("Database")));
             services.AddDbContext<RoleContext>(option => option.UseMySql(Configuration.GetConnectionString("Database")));
         }
 

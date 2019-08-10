@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.EntityFrameworkCore;
 using BizarreStatusServer.Models;
 
 namespace BizarreStatusServer.Controllers
 {
+    // TODO: Remove all "EnableCors" in production.
+    [EnableCors("MyAllowSpecificOrigins")]
     [Route("api/[controller]")]
     [ApiController]
     public class RolesController : ControllerBase
@@ -20,6 +23,7 @@ namespace BizarreStatusServer.Controllers
         }
 
         // GET: api/Roles
+        [EnableCors("MyAllowSpecificOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Role>>> GetRoles()
         {
@@ -27,6 +31,7 @@ namespace BizarreStatusServer.Controllers
         }
 
         // GET: api/Roles/5
+        [EnableCors("MyAllowSpecificOrigins")]
         [HttpGet("{id}")]
         public async Task<ActionResult<Role>> GetRole(int id)
         {

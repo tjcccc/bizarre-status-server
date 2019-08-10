@@ -22,17 +22,31 @@ namespace BizarreStatusServer
             Configuration = configuration;
         }
 
+        // TODO: Remove in production.
+        private const string MyAllowSpecificOrigins = "MyAllowSpecificOrigins";
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // TODO: Remove in production.
+            services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowSpecificOrigins, builder =>
+                {
+                    builder.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials();
+                });
+            });
             //services.AddDbContext<RoleContext>(option => option.UseInMemoryDatabase("Role"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             var db = Configuration.GetConnectionString("Database");
-            services.AddDbContext<UserContext>(option => option.UseMySql(Configuration.GetConnectionString("Database")));
-            services.AddDbContext<RoleContext>(option => option.UseMySql(Configuration.GetConnectionString("Database")));
+            services.AddDbContext<UserContext>(options => options.UseMySql(Configuration.GetConnectionString("Database")));
+            services.AddDbContext<RoleContext>(options => options.UseMySql(Configuration.GetConnectionString("Database")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +61,9 @@ namespace BizarreStatusServer
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            // TODO: Remove in production.
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseHttpsRedirection();
             app.UseMvc();

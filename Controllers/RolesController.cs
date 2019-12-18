@@ -10,7 +10,7 @@ using BizarreStatusServer.Models;
 namespace BizarreStatusServer.Controllers
 {
     // TODO: Remove all "EnableCors" in production.
-    [EnableCors("MyAllowSpecificOrigins")]
+    //[EnableCors("MyAllowSpecificOrigins")]
     [Route("api/[controller]")]
     [ApiController]
     public class RolesController : ControllerBase
@@ -23,7 +23,7 @@ namespace BizarreStatusServer.Controllers
         }
 
         // GET: api/Roles
-        [EnableCors("MyAllowSpecificOrigins")]
+        //[EnableCors("MyAllowSpecificOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Role>>> GetRoles()
         {
@@ -31,7 +31,7 @@ namespace BizarreStatusServer.Controllers
         }
 
         // GET: api/Roles/5
-        [EnableCors("MyAllowSpecificOrigins")]
+        //[EnableCors("MyAllowSpecificOrigins")]
         [HttpGet("{id}")]
         public async Task<ActionResult<Role>> GetRole(int id)
         {

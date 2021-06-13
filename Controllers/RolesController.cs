@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.EntityFrameworkCore;
 using BizarreStatusServer.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace BizarreStatusServer.Controllers
 {
@@ -33,6 +34,9 @@ namespace BizarreStatusServer.Controllers
         // GET: api/Roles/5
         //[EnableCors("MyAllowSpecificOrigins")]
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<Role>> GetRole(int id)
         {
             var role = await _context.Roles.FindAsync(id);
@@ -47,6 +51,10 @@ namespace BizarreStatusServer.Controllers
 
         // PUT: api/Roles/5
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<IActionResult> PutRole(int id, Role role)
         {
             if (id != role.Id)
@@ -77,6 +85,8 @@ namespace BizarreStatusServer.Controllers
 
         // POST: api/Roles
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<Role>> PostRole(Role role)
         {
             _context.Roles.Add(role);
@@ -87,6 +97,9 @@ namespace BizarreStatusServer.Controllers
 
         // DELETE: api/Roles/5
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<Role>> DeleteRole(Guid id)
         {
             var role = await _context.Roles.FindAsync(id);
